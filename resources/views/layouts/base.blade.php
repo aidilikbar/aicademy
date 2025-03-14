@@ -64,6 +64,10 @@
             <a href="{{ route('home') }}" class="text-white text-decoration-none">AIcademy</a>
         </div>
         <div class="d-flex align-items-center">
+            <div class="form-check form-switch px-3">
+                <input class="form-check-input" type="checkbox" id="darkModeToggle" {{ $darkMode ? 'checked' : '' }}>
+                <label class="form-check-label text-white" for="darkModeToggle">Dark Mode</label>
+            </div>
             @auth
                 <a href="{{ route('search.history') }}" class="text-white me-3">History</a>
                 <form method="POST" action="{{ route('logout') }}" class="me-3">
@@ -74,11 +78,6 @@
                 <a href="{{ route('login') }}" class="text-white me-3">Login</a>
                 <a href="{{ route('register') }}" class="text-white me-3">Register</a>
             @endauth
-            
-            <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" id="darkModeToggle" {{ $darkMode ? 'checked' : '' }}>
-                <label class="form-check-label text-white" for="darkModeToggle">Dark Mode</label>
-            </div>
         </div>
     </div>
 
