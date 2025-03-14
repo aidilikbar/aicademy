@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Services\SemanticScholarService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
+
 
 class SearchController extends Controller
 {

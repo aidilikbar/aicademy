@@ -65,7 +65,7 @@
 </head>
 <body>
     <div class="header d-flex justify-content-between align-items-center px-3">
-        <div>Academic Paper Search</div>
+        <div>AIcademy</div>
         <div class="form-check form-switch">
             <input class="form-check-input" type="checkbox" id="darkModeToggle">
             <label class="form-check-label text-white" for="darkModeToggle">Dark Mode</label>
