@@ -27,24 +27,34 @@ class SearchController extends Controller
             $response = Http::get("{$this->baseUrl}/paper/search/bulk", [
                 'query' => $query,
                 'fields' => 'title,authors,abstract,url,openAccessPdf',
-                'limit' => 10
+                'limit' => 100 // Get more results to paginate client-side
             ]);
             
-            $results = $response->json();
+            $apiResults = $response->json();
             
-            // Save search history if user is authenticated
-            if (auth()->check()) {
-                SearchHistory::create([
-                    'user_id' => auth()->id(),
-                    'query' => $query
+            // Check if results exist and have data
+            if (!isset($apiResults['data'])) {
+                return view('search.index', [
+                    'query' => $query,
+                    'error' => 'No results found or unexpected API response format.'
                 ]);
             }
+            
+            // Convert API results to collection and paginate
+            $resultsCollection = collect($apiResults['data']);
+            $results = new \Illuminate\Pagination\LengthAwarePaginator(
+                $resultsCollection->forPage($request->get('page', 1), 10),
+                $resultsCollection->count(),
+                10,
+                $request->get('page', 1),
+                ['path' => $request->url(), 'query' => $request->query()]
+            );
             
             return view('search.index', compact('results', 'query'));
         } catch (\Exception $e) {
             return view('search.index', [
                 'query' => $query,
-                'error' => 'An error occurred while fetching results. Please try again later.'
+                'error' => 'An error occurred while fetching results: ' . $e->getMessage()
             ]);
         }
     }
