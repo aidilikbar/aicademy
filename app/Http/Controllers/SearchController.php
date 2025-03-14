@@ -2,25 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\SemanticScholarService;
+use App\Models\SearchHistory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
-
 class SearchController extends Controller
 {
-    protected $semanticScholarService;
-    
-    public function __construct(SemanticScholarService $semanticScholarService)
-    {
-        $this->semanticScholarService = $semanticScholarService;
-    }
-    
+    protected $baseUrl = 'https://api.semanticscholar.org/graph/v1';
+
     public function index()
     {
         return view('search.index');
     }
-    
+
     public function search(Request $request)
     {
         $query = $request->input('query');
@@ -54,7 +48,7 @@ class SearchController extends Controller
             ]);
         }
     }
-
+    
     public function history()
     {
         $history = SearchHistory::where('user_id', auth()->id())
@@ -62,5 +56,13 @@ class SearchController extends Controller
             ->paginate(10);
             
         return view('search.history', compact('history'));
+    }
+    
+    public function toggleDarkMode(Request $request)
+    {
+        $darkMode = !session('dark_mode', false);
+        session(['dark_mode' => $darkMode]);
+        
+        return back();
     }
 }

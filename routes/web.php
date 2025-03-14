@@ -18,5 +18,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/search/results', [SearchController::class, 'search'])->name('search.results');
 });
+Route::get('/', [SearchController::class, 'index'])->name('home');
+Route::post('/toggle-dark-mode', [SearchController::class, 'toggleDarkMode'])->name('toggle.dark.mode');
 
 require __DIR__.'/auth.php';
