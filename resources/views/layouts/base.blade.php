@@ -6,6 +6,7 @@
     <title>{{ $title }}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <style>
         body {
             transition: background-color 0.3s ease, color 0.3s ease;
@@ -72,11 +73,11 @@
                 <a href="{{ route('search.history') }}" class="text-white me-3">History</a>
                 <form method="POST" action="{{ route('logout') }}" class="me-3">
                     @csrf
-                    <button type="submit" class="btn btn-sm btn-outline-light">Logout</button>
+                    <button type="submit" class="btn btn-sm btn-outline-light"><i class="fas fa-sign-out-alt"></i> Logout</button>
                 </form>
             @else
-                <a href="{{ route('login') }}" class="text-white me-3">Login</a>
-                <a href="{{ route('register') }}" class="text-white me-3">Register</a>
+                <a href="{{ route('login') }}" class="text-white me-3"><i class="fas fa-sign-in-alt"></i> Login</a>
+                <a href="{{ route('register') }}" class="text-white me-3"><i class="fas fa-user-plus"></i> Register</a>
             @endauth
         </div>
     </div>
