@@ -25,6 +25,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/', [SearchController::class, 'index'])->name('home');
+Route::get('/search/results', [SearchController::class, 'search'])->name('search.results');
 Route::post('/toggle-dark-mode', [SearchController::class, 'toggleDarkMode'])->name('toggle.dark.mode');
 
 require __DIR__.'/auth.php';
