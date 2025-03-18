@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class SearchHistory extends Model
 {
     use HasFactory;
+    protected $table = 'search_history';
     
     protected $fillable = ['user_id', 'query'];
     

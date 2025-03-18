@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ $title }}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <style>
         body {
@@ -62,7 +63,9 @@
 <body class="{{ $darkMode ? 'dark-mode' : '' }}">
     <div class="header d-flex justify-content-between align-items-center px-3">
         <div>
-            <a href="{{ route('home') }}" class="text-white text-decoration-none">AIcademy</a>
+            <a href="{{ route('home') }}" class="text-white text-decoration-none">
+                <i class="fas fa-graduation-cap me-2"></i>AIcademy
+            </a>
         </div>
         <div class="d-flex align-items-center">
             <div class="form-check form-switch px-3">
@@ -73,11 +76,11 @@
                 <a href="{{ route('search.history') }}" class="text-white me-3">History</a>
                 <form method="POST" action="{{ route('logout') }}" class="me-3">
                     @csrf
-                    <button type="submit" class="btn btn-sm btn-outline-light"><i class="fas fa-sign-out-alt"></i> Logout</button>
+                    <button type="submit" class="btn btn-sm btn-outline-light">Logout</button>
                 </form>
             @else
-                <a href="{{ route('login') }}" class="text-white me-3"><i class="fas fa-sign-in-alt"></i> Login</a>
-                <a href="{{ route('register') }}" class="text-white me-3"><i class="fas fa-user-plus"></i> Register</a>
+                <a href="{{ route('login') }}" class="text-white me-3">Login</a>
+                <a href="{{ route('register') }}" class="text-white me-3">Register</a>
             @endauth
         </div>
     </div>
