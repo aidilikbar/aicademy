@@ -31,6 +31,14 @@ class SearchController extends Controller
             ]);
             
             $apiResults = $response->json();
+
+            // Save search history if user is authenticated
+            if (auth()->check()) {
+                SearchHistory::create([
+                    'user_id' => auth()->id(),
+                    'query' => $query
+                ]);
+            }
             
             // Check if results exist and have data
             if (!isset($apiResults['data'])) {
